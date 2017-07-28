@@ -31,7 +31,14 @@ code a:hover {
 	color: #C7254E;
 	text-decoration: none;
 }
-
+.logRes {
+	margin-top: 20px;
+	font-size: 14px;
+}
+#logRes {
+	overflow: scroll;
+	font-size: 14px;
+}
 
 @media (max-width: 767px) {
 	body {
