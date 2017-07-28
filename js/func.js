@@ -36,57 +36,57 @@ $("#proceed").one("click", function() {
   var newLines = $('#newUrl').val().split(/\n/);
   var newUrlResult = [];
 
-  textbox.value += " Total count: "+ newLines.length +" URLs \n";
+  textbox.value += " Total count: " + newLines.length + " URLs \n";
   textbox.scrollTop = textbox.scrollHeight;
   total = newLines.length;
 
   for (var num = 0; num < newLines.length; num++) {
     setTimeout(function(x) {
       return function() {
-    var newUrlString = newLines[j];
-    getSourceAsDOM(newLines[j]);
-    var isThere = domNew.search(subString);
-    // If found, save the search phrase
-    if (isThere !== -1) {
-      redirectData.push({
-        NewURL: newLines[j],
-        SearchSubstring: subString
-      });
-      textbox.value += (j+1) +": " + newLines[j] + ' - phrase "' + subString + '" was found :) \n';
-      textbox.scrollTop = textbox.scrollHeight;
-      j++;
-      if (j === total) {
-        completeFnc()
-      }
-    }
-    // If URL doesn't work/exist, save "URL Error"
-    else if (domNew == "") {
-      redirectData.push({
-        NewURL: newLines[j],
-        SearchSubstring: "URL Error"
-      });
-      textbox.value += (j+1) +": " + newLines[j] + " - URL Error ;( \n";
-      textbox.scrollTop = textbox.scrollHeight;
-      j++;
-      if (j === total) {
-        completeFnc()
-      }
-    }
-    // If not found, save "Not Found"
-    else {
-      redirectData.push({
-        NewURL: newLines[j],
-        SearchSubstring: "Not Found"
-      });
-      textbox.value += (j+1) +": " + newLines[j] + " - phrase not found :( \n";
-      textbox.scrollTop = textbox.scrollHeight;
-      j++;
-      if (j === total) {
-        completeFnc()
-      }
-    }
-    } //return function
-  }(num), 0 + num * 200) //timeout
+        var newUrlString = newLines[j];
+        getSourceAsDOM(newLines[j]);
+        var isThere = domNew.search(subString);
+        // If found, save the search phrase
+        if (isThere !== -1) {
+          redirectData.push({
+            NewURL: newLines[j],
+            SearchSubstring: subString
+          });
+          textbox.value += (j + 1) + ": " + newLines[j] + ' - phrase "' + subString + '" was found :) \n';
+          textbox.scrollTop = textbox.scrollHeight;
+          j++;
+          if (j === total) {
+            completeFnc()
+          }
+        }
+        // If URL doesn't work/exist, save "URL Error"
+        else if (domNew == "") {
+          redirectData.push({
+            NewURL: newLines[j],
+            SearchSubstring: "URL Error"
+          });
+          textbox.value += (j + 1) + ": " + newLines[j] + " - URL Error ;( \n";
+          textbox.scrollTop = textbox.scrollHeight;
+          j++;
+          if (j === total) {
+            completeFnc()
+          }
+        }
+        // If not found, save "Not Found"
+        else {
+          redirectData.push({
+            NewURL: newLines[j],
+            SearchSubstring: "Not Found"
+          });
+          textbox.value += (j + 1) + ": " + newLines[j] + " - phrase not found :( \n";
+          textbox.scrollTop = textbox.scrollHeight;
+          j++;
+          if (j === total) {
+            completeFnc()
+          }
+        }
+      } //return function
+    }(num), 0 + num * 200) //timeout
   }
 
   var completeFnc = function() {
