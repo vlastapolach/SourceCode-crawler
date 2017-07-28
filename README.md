@@ -1,6 +1,6 @@
 # Source Code Crawler
 
-### http://vlastapolach.cz/project/sourcecode-crawler/
+### http://vlastapolach.cz/myscript/sourcecode-crawler/
 
 ## 1) When do you want to use this?
 For marketing/sales activities you can search through the list of URLs to check for a piece of code to filter URLs which are using Wordpress, Joomla or any other piece of SW.
@@ -24,6 +24,6 @@ And wait for the crawling to complete.
 ## 6) Download CSV
 Based on the number of URLs and connection speed, searching might take a while. The Download button will become active after the searching is done.
 
-Live on: http://vlastapolach.cz/project/sourcecode-crawler/
+Live on: http://vlastapolach.cz/myscript/sourcecode-crawler/
 
 *(This tool has to run from HTTP or from localhost. Due to limitations of accessing HTTP from HTTPS it wouldn't work for any HTTP site)*
