@@ -25,4 +25,5 @@ And wait for the crawling to complete.
 Based on the number of URLs and connection speed, searching might take a while. The Download button will become active after the searching is done.
 
 Live on: http://vlastapolach.cz/project/sourcecode-crawler/
-(This tool has to run from HTTP or from localhost. Due to limitations of accessing HTTP from HTTPS it wouldn't work for any HTTP site)
+
+*(This tool has to run from HTTP or from localhost. Due to limitations of accessing HTTP from HTTPS it wouldn't work for any HTTP site)*
