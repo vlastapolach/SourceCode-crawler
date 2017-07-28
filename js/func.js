@@ -52,7 +52,7 @@ $("#proceed").one("click", function() {
             NewURL: newLines[j],
             SearchSubstring: subString
           });
-          textbox.value += "💚 " + (j + 1) + ": " + newLines[j] + ' - phrase "' + subString + '" was found :) \n';
+          textbox.value += "💚 " + (j + 1) + ": " + newLines[j] + ' - phrase "' + subString + '" was found\n';
           textbox.scrollTop = textbox.scrollHeight;
           j++;
           if (j === total) {
@@ -65,7 +65,7 @@ $("#proceed").one("click", function() {
             NewURL: newLines[j],
             SearchSubstring: "URL Error"
           });
-          textbox.value += "⛔ " + (j + 1) + ": " + newLines[j] + " - URL Error ;( \n";
+          textbox.value += "⛔ " + (j + 1) + ": " + newLines[j] + " - URL Error\n";
           textbox.scrollTop = textbox.scrollHeight;
           j++;
           if (j === total) {
@@ -78,7 +78,7 @@ $("#proceed").one("click", function() {
             NewURL: newLines[j],
             SearchSubstring: "Not Found"
           });
-          textbox.value += "👻 " + (j + 1) + ": " + newLines[j] + " - phrase not found :( \n";
+          textbox.value += "👻 " + (j + 1) + ": " + newLines[j] + " - phrase not found\n";
           textbox.scrollTop = textbox.scrollHeight;
           j++;
           if (j === total) {
