@@ -26,4 +26,4 @@ Based on the number of URLs and connection speed, searching might take a while. 
 
 Live on: http://vlastapolach.cz/myscript/sourcecode-crawler/
 
-*(This tool has to run from HTTP or from localhost. Due to limitations of accessing HTTP from HTTPS it wouldn't work for any HTTP site)*
+*(This tool has to run from HTTP or from localhost. Due to limitations of accessing HTTP from HTTPS (blocking mixed content) it wouldn't work properly)*
