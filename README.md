@@ -6,7 +6,7 @@
 For marketing/sales activities you can search through the list of URLs to check for a piece of code to filter URLs which are using Wordpress, Joomla or any other piece of SW.
 
 ## 2) Download Chrome Plugin
-For security reasons, you can't browse other URLs source code (Access-Control-Allow-Origin). You have to use [Google Chrome](https://www.google.com/chrome/) and download and **enable** this plugin: **[Allow-Control-Allow-Origin: *](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi)**. Before new run, it is recommended to **Deactivate** and then **Active** the A-C-A-O* plugin and refresh the page.
+For security reasons, you can't browse other URLs source code (Access-Control-Allow-Origin). You have to use [Google Chrome](https://www.google.com/chrome/) and download and **enable** this plugin: **[Allow-Control-Allow-Origin: *](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi)**. Before new run, it is recommended to **Deactivate** and then **Activate** the A-C-A-O* plugin and refresh the page.
 
 ## 3) Paste the search phrase
 For example: `wp-includes`
