@@ -13,9 +13,11 @@ For example: `wp-includes`
 
 ## 4) Paste the list of URLs
 One URL per line, in the format:
-`https://wordpress.org/`
-`http://supermaminka.cz/`
-`http://www.vlastapolach.cz/`
+```
+https://wordpress.org/
+http://supermaminka.cz/
+http://www.vlastapolach.cz/
+```
 Each URL on a single line, no spaces, no commas, full URL (including `http://`)
 
 ## 5) Click Proceed
