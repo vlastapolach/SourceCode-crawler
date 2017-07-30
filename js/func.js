@@ -2,6 +2,7 @@ var subString = "";
 var redirectData = [];
 var domNew = "";
 var j = 0;
+var errorCount = 0;
 var total;
 var oldVal = "";
 var newVal = "";
@@ -74,7 +75,7 @@ $("#proceed").click(function() {
               NewURL: newLines[j],
               SearchSubstring: subString
             });
-            textbox.value += "💚 " + (j + 1) + ": " + newLines[j] + ' - phrase "' + subString + '" was found\n';
+            textbox.value += "💚  " + (j + 1) + ": " + newLines[j] + ' - phrase "' + subString + '" was found\n';
             textbox.scrollTop = textbox.scrollHeight;
             j++;
             if (j === total) {
@@ -87,9 +88,10 @@ $("#proceed").click(function() {
               NewURL: newLines[j],
               SearchSubstring: "URL Error"
             });
-            textbox.value += "⛔ " + (j + 1) + ": " + newLines[j] + " - URL Error\n";
+            textbox.value += "⛔  " + (j + 1) + ": " + newLines[j] + " - URL Error\n";
             textbox.scrollTop = textbox.scrollHeight;
             j++;
+            errorCount++
             if (j === total) {
               completeFnc()
             }
@@ -100,7 +102,7 @@ $("#proceed").click(function() {
               NewURL: newLines[j],
               SearchSubstring: "Not Found"
             });
-            textbox.value += "👻 " + (j + 1) + ": " + newLines[j] + " - phrase not found\n";
+            textbox.value += "👻  " + (j + 1) + ": " + newLines[j] + " - phrase not found\n";
             textbox.scrollTop = textbox.scrollHeight;
             j++;
             if (j === total) {
@@ -112,8 +114,15 @@ $("#proceed").click(function() {
     }
 
     var completeFnc = function() {
-      textbox.value += '*** COMPLETED *** \n';
-      textbox.scrollTop = textbox.scrollHeight;
+      if (newLines.length == errorCount){
+        textbox.value += "🌍  Network error - try to disable/enable cross-origin resource sharing (A-C-A-O* plugin)\n";
+        textbox.scrollTop = textbox.scrollHeight;
+      }
+      else {
+        textbox.value += '*** COMPLETED *** \n';
+        textbox.scrollTop = textbox.scrollHeight;
+      }
+
       // Enable download button
       $("#download").removeClass("disabled");
       $("#download").removeClass("btn-danger");
