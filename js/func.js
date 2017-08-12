@@ -8,8 +8,8 @@ var oldVal = "";
 var newVal = "";
 
 function enableBtn() {
-  oldVal = $('#oldUrl').val();
-  newVal = $('#newUrl').val();
+  oldVal = $("#oldUrl").val();
+  newVal = $("#newUrl").val();
   if (oldVal !== "" && newVal !== "") {
     $("#proceed").removeClass("disabled");
     $("#proceed").removeClass("btn-danger");
@@ -20,14 +20,14 @@ function enableBtn() {
     $("#proceed").addClass("btn-danger");
   }
 }
-$('#oldUrl').keyup(enableBtn);
-$('#newUrl').keyup(enableBtn);
+$("#oldUrl").keyup(enableBtn);
+$("#newUrl").keyup(enableBtn);
 
 function subStr() {
-  subString = $('#oldUrl').val();
+  subString = $("#oldUrl").val();
 }
 
-$('#oldUrl').change(subStr);
+$("#oldUrl").change(subStr);
 // Get source code of the URL
 function getSourceAsDOM(url) {
   xmlhttp = new XMLHttpRequest();
@@ -47,16 +47,16 @@ $("#proceed").click(function() {
   event.preventDefault();
 
   if ($("#proceed").hasClass("disabled")) {
-    console.log("Not possible - fill in Search phrase and List of URLs.")
+    console.log("Not possible - fill in Search phrase and List of URLs.");
   } else {
     // read input values
-    subString = $('#oldUrl').val();
+    subString = $("#oldUrl").val();
     var newUrla = $("#newUrl").val();
     var download = $("#download").val();
-    var textbox = document.getElementById('logRes');
+    var textbox = document.getElementById("logRes");
 
     // read URLs and line by line save them as an object
-    var newLines = $('#newUrl').val().split(/\n/);
+    var newLines = $("#newUrl").val().split(/\n/);
     var newUrlResult = [];
 
     textbox.value += " Total count: " + newLines.length + " URLs \n";
@@ -64,62 +64,72 @@ $("#proceed").click(function() {
     total = newLines.length;
 
     for (var num = 0; num < newLines.length; num++) {
-      setTimeout(function(x) {
-        return function() {
-          var newUrlString = newLines[j];
-          getSourceAsDOM(newLines[j]);
-          var isThere = domNew.search(subString);
-          // If found, save the search phrase
-          if (isThere !== -1) {
-            redirectData.push({
-              NewURL: newLines[j],
-              SearchSubstring: subString
-            });
-            textbox.value += "💚  " + (j + 1) + ": " + newLines[j] + ' - phrase "' + subString + '" was found\n';
-            textbox.scrollTop = textbox.scrollHeight;
-            j++;
-            if (j === total) {
-              completeFnc()
+      setTimeout(
+        (function(x) {
+          return function() {
+            var newUrlString = newLines[j];
+            getSourceAsDOM(newLines[j]);
+            var isThere = domNew.search(subString);
+            // If found, save the search phrase
+            if (isThere !== -1) {
+              redirectData.push({
+                NewURL: newLines[j],
+                SearchSubstring: subString
+              });
+              textbox.value +=
+                "💚  " +
+                (j + 1) +
+                ": " +
+                newLines[j] +
+                ' - phrase "' +
+                subString +
+                '" was found\n';
+              textbox.scrollTop = textbox.scrollHeight;
+              j++;
+              if (j === total) {
+                completeFnc();
+              }
+            } else if (domNew == "") {
+              // If URL doesn't work/exist, save "URL Error"
+              redirectData.push({
+                NewURL: newLines[j],
+                SearchSubstring: "URL Error"
+              });
+              textbox.value +=
+                "⛔  " + (j + 1) + ": " + newLines[j] + " - URL Error\n";
+              textbox.scrollTop = textbox.scrollHeight;
+              j++;
+              errorCount++;
+              if (j === total) {
+                completeFnc();
+              }
+            } else {
+              // If not found, save "Not Found"
+              redirectData.push({
+                NewURL: newLines[j],
+                SearchSubstring: "Not Found"
+              });
+              textbox.value +=
+                "👻  " + (j + 1) + ": " + newLines[j] + " - phrase not found\n";
+              textbox.scrollTop = textbox.scrollHeight;
+              j++;
+              if (j === total) {
+                completeFnc();
+              }
             }
-          }
-          // If URL doesn't work/exist, save "URL Error"
-          else if (domNew == "") {
-            redirectData.push({
-              NewURL: newLines[j],
-              SearchSubstring: "URL Error"
-            });
-            textbox.value += "⛔  " + (j + 1) + ": " + newLines[j] + " - URL Error\n";
-            textbox.scrollTop = textbox.scrollHeight;
-            j++;
-            errorCount++
-            if (j === total) {
-              completeFnc()
-            }
-          }
-          // If not found, save "Not Found"
-          else {
-            redirectData.push({
-              NewURL: newLines[j],
-              SearchSubstring: "Not Found"
-            });
-            textbox.value += "👻  " + (j + 1) + ": " + newLines[j] + " - phrase not found\n";
-            textbox.scrollTop = textbox.scrollHeight;
-            j++;
-            if (j === total) {
-              completeFnc()
-            }
-          }
-        } //return function
-      }(num), 0 + num * 200) //timeout
+          }; //return function
+        })(num),
+        0 + num * 200
+      ); //timeout
     }
 
     var completeFnc = function() {
-      if (newLines.length == errorCount){
-        textbox.value += "🌍  Network error - try to disable/enable cross-origin resource sharing (A-C-A-O* plugin)\n";
+      if (newLines.length == errorCount) {
+        textbox.value +=
+          "🌍  Network error - try to disable/enable cross-origin resource sharing (A-C-A-O* plugin)\n";
         textbox.scrollTop = textbox.scrollHeight;
-      }
-      else {
-        textbox.value += '*** COMPLETED *** \n';
+      } else {
+        textbox.value += "*** COMPLETED *** \n";
         textbox.scrollTop = textbox.scrollHeight;
       }
 
@@ -127,7 +137,7 @@ $("#proceed").click(function() {
       $("#download").removeClass("disabled");
       $("#download").removeClass("btn-danger");
       $("#download").addClass("btn-primary");
-    }
+    };
 
     // Disable proceed button
     $("#proceed").addClass("disabled");
@@ -146,12 +156,12 @@ function convertArrayOfObjectsToCSV(args) {
     return null;
   }
 
-  columnDelimiter = args.columnDelimiter || ',';
-  lineDelimiter = args.lineDelimiter || '\n';
+  columnDelimiter = args.columnDelimiter || ",";
+  lineDelimiter = args.lineDelimiter || "\n";
 
   keys = Object.keys(data[0]);
 
-  result = '';
+  result = "";
   result += keys.join(columnDelimiter);
   result += lineDelimiter;
 
@@ -178,15 +188,15 @@ function downloadCSV(args) {
   });
   if (csv == null) return;
 
-  filename = 'crawler-export.csv';
+  filename = "crawler-export.csv";
 
   if (!csv.match(/^data:text\/csv/i)) {
-    csv = 'data:text/csv;charset=utf-8,' + csv;
+    csv = "data:text/csv;charset=utf-8," + csv;
   }
   data = encodeURI(csv);
 
-  link = document.createElement('a');
-  link.setAttribute('href', data);
-  link.setAttribute('download', filename);
+  link = document.createElement("a");
+  link.setAttribute("href", data);
+  link.setAttribute("download", filename);
   link.click();
 }
