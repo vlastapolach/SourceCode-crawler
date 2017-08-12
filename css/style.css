@@ -17,20 +17,6 @@ footer {
 	font-size: 14px;
 	padding: 10px;
 }
-.preview {
-	padding-top: 10px;
-}
-#preview{
-	color: #C7254E;
-}
-code a {
-	color: #C7254E;
-	text-decoration: none;
-}
-code a:hover {
-	color: #C7254E;
-	text-decoration: none;
-}
 .logRes {
 	margin-top: 20px;
 	font-size: 14px;
