@@ -27,6 +27,13 @@ function subStr() {
   subString = $("#oldUrl").val();
 }
 
+// Custom error/success messages to show in HTML Console log box
+function customLog(logMsg) {
+  var textbox = document.getElementById("logRes");
+  textbox.value += logMsg;
+  textbox.scrollTop = textbox.scrollHeight;
+}
+
 $("#oldUrl").change(subStr);
 // Get source code of the URL
 function getSourceAsDOM(url) {
@@ -53,14 +60,13 @@ $("#proceed").click(function() {
     subString = $("#oldUrl").val();
     var newUrla = $("#newUrl").val();
     var download = $("#download").val();
-    var textbox = document.getElementById("logRes");
 
     // read URLs and line by line save them as an object
     var newLines = $("#newUrl").val().split(/\n/);
     var newUrlResult = [];
 
-    textbox.value += " Total count: " + newLines.length + " URLs \n";
-    textbox.scrollTop = textbox.scrollHeight;
+    customLog(" Total count: " + newLines.length + " URLs \n");
+
     total = newLines.length;
 
     for (var num = 0; num < newLines.length; num++) {
@@ -76,15 +82,14 @@ $("#proceed").click(function() {
                 NewURL: newLines[j],
                 SearchSubstring: subString
               });
-              textbox.value +=
-                "💚  " +
+              customLog(
+                "✅  " +
                 (j + 1) +
                 ": " +
                 newLines[j] +
                 ' - phrase "' +
                 subString +
-                '" was found\n';
-              textbox.scrollTop = textbox.scrollHeight;
+                '" was found\n');
               j++;
               if (j === total) {
                 completeFnc();
@@ -95,9 +100,8 @@ $("#proceed").click(function() {
                 NewURL: newLines[j],
                 SearchSubstring: "URL Error"
               });
-              textbox.value +=
-                "⛔  " + (j + 1) + ": " + newLines[j] + " - URL Error\n";
-              textbox.scrollTop = textbox.scrollHeight;
+              customLog(
+                "⛔  " + (j + 1) + ": " + newLines[j] + " - URL Error\n");
               j++;
               errorCount++;
               if (j === total) {
@@ -109,9 +113,8 @@ $("#proceed").click(function() {
                 NewURL: newLines[j],
                 SearchSubstring: "Not Found"
               });
-              textbox.value +=
-                "👻  " + (j + 1) + ": " + newLines[j] + " - phrase not found\n";
-              textbox.scrollTop = textbox.scrollHeight;
+              customLog(
+                "🔍  " + (j + 1) + ": " + newLines[j] + " - phrase not found\n");
               j++;
               if (j === total) {
                 completeFnc();
@@ -125,12 +128,10 @@ $("#proceed").click(function() {
 
     var completeFnc = function() {
       if (newLines.length == errorCount) {
-        textbox.value +=
-          "🌍  Network error - try to disable/enable cross-origin resource sharing (A-C-A-O* plugin)\n";
-        textbox.scrollTop = textbox.scrollHeight;
+        customLog(
+          "🌍  Network error - try to disable/enable cross-origin resource sharing (A-C-A-O* plugin)\n");
       } else {
-        textbox.value += "*** COMPLETED *** \n";
-        textbox.scrollTop = textbox.scrollHeight;
+        customLog("*** COMPLETED *** \n");
       }
 
       // Enable download button
@@ -144,6 +145,10 @@ $("#proceed").click(function() {
     $("#proceed").addClass("btn-danger");
   }
 });
+
+// Print actual year into the footer
+var year = new Date();
+$(".foot-link").text(year.getFullYear());
 
 /* Download as CSV script from https://halistechnology.com/2015/05/28/use-javascript-to-export-your-data-as-csv/ */
 
